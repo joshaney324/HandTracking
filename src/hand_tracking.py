@@ -1,8 +1,5 @@
 import cv2
 import mediapipe as mp
-import tensorflow as tf
-import numpy as np
-import matplotlib.pyplot as plt
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()

@@ -18,7 +18,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 one_data = []
 
-while cap.isOpened() and time.time() - start_time < 5:
+while cap.isOpened() and time.time() - start_time < 10:
     ret, frame = cap.read()
     if not ret:
         break
@@ -61,7 +61,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 two_data = []
 
-while cap.isOpened() and time.time() - start_time < 5:
+while cap.isOpened() and time.time() - start_time < 10:
     ret, frame = cap.read()
     if not ret:
         break
@@ -104,7 +104,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 three_data = []
 
-while cap.isOpened() and time.time() - start_time < 5:
+while cap.isOpened() and time.time() - start_time < 10:
     ret, frame = cap.read()
     if not ret:
         break
@@ -134,8 +134,8 @@ cv2.destroyAllWindows()
 
 three_data = np.array(three_data)
 three_data_flat = three_data.reshape(len(three_data), -1)
-labels = np.tile(class_labels[1], (len(three_data_flat), 1))
-three_data = np.concatenate((two_data_flat, labels), axis=1)
+labels = np.tile(class_labels[2], (len(three_data_flat), 1))
+three_data = np.concatenate((three_data_flat, labels), axis=1)
 
 ######################## Save to CSV ######################################
 
