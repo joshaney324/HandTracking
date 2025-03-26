@@ -18,7 +18,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 one_data = []
 
-while cap.isOpened() and time.time() - start_time < 1:
+while cap.isOpened() and time.time() - start_time < 5:
     ret, frame = cap.read()
     if not ret:
         break
@@ -61,7 +61,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 two_data = []
 
-while cap.isOpened() and time.time() - start_time < 1:
+while cap.isOpened() and time.time() - start_time < 5:
     ret, frame = cap.read()
     if not ret:
         break
@@ -104,7 +104,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 three_data = []
 
-while cap.isOpened() and time.time() - start_time < 1:
+while cap.isOpened() and time.time() - start_time < 5:
     ret, frame = cap.read()
     if not ret:
         break
