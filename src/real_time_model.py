@@ -8,8 +8,8 @@ data = np.loadtxt('../data/data.csv', delimiter=",")
 np.random.shuffle(data)
 
 
-datapoints = data[:, :-3]
-labels = data[:, -3:]
+datapoints = data[:, :-5]
+labels = data[:, -5:]
 
 loss_fn = 'categorical_crossentropy' if labels.shape[1] > 1 else 'sparse_categorical_crossentropy'
 
@@ -21,7 +21,7 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(128, activation='relu'),
     tf.keras.layers.Dropout(0.3),
     tf.keras.layers.Dense(64, activation='relu'),
-    tf.keras.layers.Dense(3, activation='softmax')
+    tf.keras.layers.Dense(5, activation='softmax')
 ])
 
 model.compile(optimizer='adam',
@@ -30,7 +30,7 @@ model.compile(optimizer='adam',
 
 model.summary()
 
-model.fit(X_train, y_train, epochs=15, batch_size=32, validation_data=(X_test, y_test))
+model.fit(X_train, y_train, epochs=25, batch_size=32, validation_data=(X_test, y_test))
 
 test_loss, test_acc = model.evaluate(X_test, y_test)
 print(f"Test Accuracy: {test_acc:.4f}")
