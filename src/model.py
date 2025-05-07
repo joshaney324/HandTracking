@@ -38,7 +38,7 @@ def hyperparameter_search(X_train, y_train, X_test, y_test, max_trials):
         project_name='dense_model_tuning'
     )
 
-    tuner.search(X_train, y_train, epochs=20, validation_data=(X_test, y_test), verbose=1)
+    tuner.search(X_train, y_train, epochs=32, validation_data=(X_test, y_test), verbose=1)
 
     best_model = tuner.get_best_models(num_models=1)[0]
     return best_model

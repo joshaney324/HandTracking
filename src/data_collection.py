@@ -7,8 +7,6 @@ import csv
 number_of_classes = 5
 class_labels = np.eye(number_of_classes)
 
-
-
 csv_file = "../data/data.csv"
 with open(csv_file, "w", newline="") as file:
     writer = csv.writer(file)
