@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 data = np.loadtxt('../../data/number_data.csv', delimiter=",")
 np.random.shuffle(data)
 
-datapoints = data[:, :-5]
-labels = data[:, -5:]
+datapoints = data[:, :-1]
+labels = data[:, -1]
 scaler = StandardScaler()
 scaled_X = scaler.fit_transform(datapoints)
 pca = PCA(n_components=2)  # Specify the number of components to retain
@@ -33,7 +33,21 @@ plt.title('PCA Result')
 plt.grid(True)
 plt.show()
 
-X_train, X_test, y_train, y_test = train_test_split(datapoints, labels, test_size=0.2, random_state=42)
+num_classes = len(np.unique(labels))
+eye = np.eye(num_classes)
+one_hot_dict = {}
+
+for i, label in enumerate(np.unique(labels)):
+    one_hot_dict[label] = eye[i]
+
+print(num_classes)
+one_hot_labels = []
+for label in labels:
+    one_hot_labels.append(one_hot_dict[label])
+
+one_hot_labels = np.array(one_hot_labels)
+
+X_train, X_test, y_train, y_test = train_test_split(datapoints, one_hot_labels, test_size=0.2, random_state=42)
 
 model = complete_model(X_train, y_train, X_test, y_test, 10)
 

@@ -21,7 +21,6 @@ def collect_data(csv_title, labels):
     }
 
     csv_file = csv_title
-    # print(csv_file)
 
     with open(csv_file, "a", newline="") as file:
         writer = csv.writer(file)
@@ -36,7 +35,7 @@ def collect_data(csv_title, labels):
             start_time = time.time()
             hand_data = []
 
-            while cap.isOpened() and time.time() - start_time < 10:
+            while cap.isOpened() and time.time() - start_time < 20:
                 ret, frame = cap.read()
                 if not ret:
                     break
@@ -56,7 +55,7 @@ def collect_data(csv_title, labels):
                 cv2.putText(frame, f"Label: {label}", (10, 40),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-                remaining = int(10 - (time.time() - start_time))
+                remaining = int(20 - (time.time() - start_time))
                 cv2.putText(frame, f"Time Left: {remaining}s", (10, 80),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
 
@@ -69,11 +68,10 @@ def collect_data(csv_title, labels):
             cv2.destroyAllWindows()
 
             hand_data = np.array(hand_data)
-            one_hot_labels = np.tile(one_hot_dict[label], (len(hand_data), 1))
-            combined = np.concatenate((hand_data, one_hot_labels), axis=1)
 
-            # Write data
-            writer.writerows(combined)
+            labeled_data = [row.tolist() + [labels[i]] for row in hand_data]
+
+            writer.writerows(labeled_data)
 
     print(f"\nData saved to {csv_file}")
     return one_hot_dict
