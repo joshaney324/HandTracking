@@ -35,7 +35,7 @@ plt.show()
 
 X_train, X_test, y_train, y_test = train_test_split(datapoints, labels, test_size=0.2, random_state=42)
 
-model = complete_model(X_train, y_train, X_test, y_test, 3)
+model = complete_model(X_train, y_train, X_test, y_test, 10)
 
 test_loss, test_acc = model.evaluate(X_test, y_test)
 print(f"Test Accuracy: {test_acc:.4f}")

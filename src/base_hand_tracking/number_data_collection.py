@@ -4,11 +4,12 @@ import time
 import numpy as np
 import csv
 
+
 number_of_classes = 5
 class_labels = np.eye(number_of_classes)
 
 csv_file = "../../data/number_data.csv"
-with open(csv_file, "w", newline="") as file:
+with open(csv_file, "a", newline="") as file:
     writer = csv.writer(file)
 
     for i in range(number_of_classes):
@@ -32,6 +33,8 @@ with open(csv_file, "w", newline="") as file:
             if result.multi_hand_landmarks:
                 for hand_landmarks in result.multi_hand_landmarks:
                     mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+                    # normalized_landmarks = normalize_landmarks(hand_landmarks)
+                    # print(normalized_landmarks)
                     hand = []
                     for idx, landmark in enumerate(hand_landmarks.landmark):
                         x, y, z = landmark.x, landmark.y, landmark.z
