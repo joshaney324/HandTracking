@@ -9,14 +9,14 @@ import matplotlib
 matplotlib.use('TkAgg')  # or 'Qt5Agg' depending on your system
 import matplotlib.pyplot as plt
 
-data = np.loadtxt('../data/data.csv', delimiter=",")
+data = np.loadtxt('../../data/number_data.csv', delimiter=",")
 np.random.shuffle(data)
 
 datapoints = data[:, :-5]
 labels = data[:, -5:]
 scaler = StandardScaler()
 scaled_X = scaler.fit_transform(datapoints)
-pca = PCA(n_components=2) # Specify the number of components to retain
+pca = PCA(n_components=2)  # Specify the number of components to retain
 pca.fit(scaled_X)
 X_pca = pca.transform(scaled_X)
 
@@ -32,8 +32,6 @@ plt.ylabel('Principal Component 2')
 plt.title('PCA Result')
 plt.grid(True)
 plt.show()
-
-
 
 X_train, X_test, y_train, y_test = train_test_split(datapoints, labels, test_size=0.2, random_state=42)
 

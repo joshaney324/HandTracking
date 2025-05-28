@@ -7,11 +7,12 @@ import csv
 number_of_classes = 5
 class_labels = np.eye(number_of_classes)
 
-csv_file = "../data/data.csv"
+csv_file = "../../data/number_data.csv"
 with open(csv_file, "w", newline="") as file:
     writer = csv.writer(file)
 
     for i in range(number_of_classes):
+        print("class: ", i)
         mp_hands = mp.solutions.hands
         hands = mp_hands.Hands()
         mp_draw = mp.solutions.drawing_utils
