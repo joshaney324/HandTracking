@@ -101,8 +101,22 @@ while cap.isOpened():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
     cv2.rectangle(frame, (10, h - 60), (w - 10, h - 10), (50, 50, 50), -1)
-    cv2.putText(frame, f"Text: {typed_text}", (20, h - 25),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    font_scale = 0.8
+    thickness = 2
+    text = f"Text: {typed_text}"
+    text_pos = (20, h - 25)
+
+    (text_width, text_height), _ = cv2.getTextSize(text, font, font_scale, thickness)
+
+    cv2.putText(frame, text, text_pos, font, font_scale, (255, 255, 255), thickness)
+
+    if int(time.time() * 2) % 2 == 0:
+        cursor_x = text_pos[0] + text_width + 2
+        cursor_y1 = text_pos[1] - text_height
+        cursor_y2 = text_pos[1] + 5
+        cv2.line(frame, (cursor_x, cursor_y1), (cursor_x, cursor_y2), (255, 255, 255), 2)
 
     bar_x, bar_y = 10, h - 70
     bar_width, bar_height = w - 20, 10
